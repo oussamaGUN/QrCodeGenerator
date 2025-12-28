@@ -112,44 +112,44 @@ const cards_1 = [
 
 const cards_2 = [
   {
-    id: 1,
+    id: 16,
     icon: <PictureAsPdfOutlinedIcon />,
     title: 'PDF',
   },
   {
-    id: 2,
+    id: 17,
     icon: <ImageOutlinedIcon />,
     title: 'Image',
   },
   {
-    id: 3,
+    id: 18,
     icon: <VideocamOutlinedIcon />,
     title: 'Video',
   },
   {
-    id: 4,
+    id: 19,
     icon: <MusicNoteOutlinedIcon />,
     title: 'MP3',
   },
   {
-    id: 5,
+    id: 20,
     icon: <CropFreeOutlinedIcon />,
     title: 'Barcode',
   },
   {
-    id: 6,
+    id: 21,
     icon: <ThumbsUpDownOutlinedIcon />,
     title: 'Feedback',
   },
   {
-    id: 7,
+    id: 22,
     icon: <StarHalfOutlinedIcon />,
     title: 'Rating',
   },
 ];
 
-function SelectActionCard() {
-  const [selectedCard, setSelectedCard] = React.useState(0);
+function SelectActionCard({setConfiguration}: {setConfiguration: any}) {
+  const [selectedCard, setSelectedCard] = React.useState(1);
   const [page, setPage] = React.useState(1);
   let cards: any[] = [];
   cards = page === 1 ? cards_1 : cards_2;
@@ -195,8 +195,9 @@ function SelectActionCard() {
               <CardActionArea
                 onClick={
                   () => { 
-                    setSelectedCard(index)
-                    console.log(index)
+                    setSelectedCard(card.id)
+                    console.log(card.id)
+                    setConfiguration(card)
                   }
                 }
                 data-active={selectedCard === index ? '' : undefined}
@@ -210,10 +211,10 @@ function SelectActionCard() {
                   textAlign: 'center',
                   bgcolor: 'var(--card-suface)',
                   borderRadius: '1rem',
-                  border: selectedCard === index
+                  border: selectedCard === card.id
                     ? '2px solid var(--primary)'
                     : '2px solid transparent',
-                  color: selectedCard === index ? 'var(--primary)' : 'var(--muted-text)',
+                  color: selectedCard === card.id ? 'var(--primary)' : 'var(--muted-text)',
                   '&:hover': {
                     color: 'var(--primary)',
                   },
@@ -253,12 +254,10 @@ function SelectActionCard() {
               sx={{
                 color: 'var(--text)',
                 borderRadius: '8px',
-
                 '&.Mui-selected': {
                   bgcolor: 'var(--primary)',
                   color: 'var(--text)',
                 },
-
                 '&:hover': {
                   bgcolor: 'rgba(99, 102, 241, 0.2)',
                 },
