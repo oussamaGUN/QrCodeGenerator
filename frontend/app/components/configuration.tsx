@@ -20,8 +20,9 @@ export default function ConfigurationComponent({configuration}: {configuration: 
           aria-controls="panel1-content"
           id="panel1-header"
           sx={{
-            bgcolor: 'var(--border)',
+            bgcolor: 'var(--border-dark)',
             color: 'var(--muted-text)',
+            pl: '1rem',
             '& .MuiAccordionSummary-expandIconWrapper': {
               color: 'var(--muted-text)',
             },
@@ -36,7 +37,7 @@ export default function ConfigurationComponent({configuration}: {configuration: 
             {configuration.title} Configuration
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{bgcolor: 'var(--card-suface)'}}>
           <ConfigurationContent configuration={configuration}/>
         </AccordionDetails>
       </Accordion>
